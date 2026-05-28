@@ -1,0 +1,206 @@
+/* Глобальные токены и сброс стилей для Zero.ID */
+
+@import "tailwindcss";
+
+/* Дизайн-токены: цвета, типографика, spacing */
+:root {
+  /* Шрифты */
+  --main-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --code-font: 'ui-monospace', 'IBM Plex Mono', SF Mono, Menlo, Monaco, Consolas, monospace;
+
+  /* Базовая палитра серых */
+  --color-gray-0:    #ffffff;
+  --color-gray-50:   #f0f0f0;
+  --color-gray-100:  #d1d2d3;
+  --color-gray-200:  #bebfc1;
+  --color-gray-400:  #5f6366;
+  --color-gray-600:  #434546;
+  --color-gray-700:  #383a3b;
+  --color-gray-800:  #2e3031;
+  --color-gray-900:  #232526;
+  --color-gray-1000: #141616;
+
+  /* Семантические глобальные токены */
+  --global-background:       #141616;
+  --global-muted-background: #232526;
+  --global-foreground:       #ffffff;
+  --global-border:           #383a3b;
+  --global-body-text:        #d1d2d3;
+  --global-mute-text:        #bebfc1;
+
+  /* Панели (pane) */
+  --pane-background:       #232526;
+  --pane-muted-background: #2e3031;
+  --pane-border:           #383a3b;
+  --pane-border-hover:     #5f6366;
+  --pane-border-active:    #434546;
+
+  /* Акцентный primary — зелёный */
+  --primary-accent:               #1ded83;
+  --primary-hover:                #4af19c;
+  --primary-accent-overlay:       rgba(29, 237, 131, 0.1);
+  --primary-accent-overlay-hover: rgba(29, 237, 131, 0.2);
+
+  /* Danger */
+  --danger-default:          #c64427;
+  --danger-hover:            #d55235;
+  --danger-disabled:         #803f30;
+  --danger-high-contrast:    #f75049;
+
+  /* Размеры шрифта */
+  --font-size-1:  10px;
+  --font-size-2:  11px;
+  --font-size-3:  12px;
+  --font-size-4:  13px;
+  --font-size-5:  14px;
+  --font-size-6:  15px;
+  --font-size-7:  16px;
+  --font-size-8:  18px;
+  --font-size-9:  20px;
+  --font-size-10: 24px;
+
+  /* Spacing */
+  --spacing-half:  2px;
+  --spacing-1:     4px;
+  --spacing-1half: 6px;
+  --spacing-2:     8px;
+  --spacing-2half: 10px;
+  --spacing-3:     12px;
+  --spacing-3half: 14px;
+  --spacing-4:     16px;
+  --spacing-5:     20px;
+  --spacing-6:     24px;
+  --spacing-8:     32px;
+  --spacing-10:    40px;
+
+  /* Border radius */
+  --border-radius-base: 4px;
+  --border-radius-md:   6px;
+  --border-radius-lg:   8px;
+  --border-radius-xl:   12px;
+  --border-radius-full: 9999px;
+
+  /* Анимация */
+  --default-timing-function:       ease-out;
+  --default-animation-duration:    300ms;
+  --default-hover-animation-duration: 100ms;
+
+  /* Z-index уровни */
+  --z-index-header:          1000;
+  --z-index-dropdown-menu:   1100;
+  --z-index-popover:         1500;
+  --z-index-tooltip:         2000;
+  --z-index-overlay:         3100;
+  --z-index-toast:           3400;
+
+  /* Высота app bar */
+  --layout-app-bar-height: 52px;
+}
+
+/* Сброс */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--main-font);
+  font-size: var(--font-size-5);
+  background-color: var(--global-background);
+  color: var(--global-foreground);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Скроллбар в стиле дизайн-системы */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-700) transparent;
+}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-700);
+  border-radius: var(--border-radius-full);
+}
+*::-webkit-scrollbar-thumb:hover { background-color: var(--color-gray-400); }
+
+/* React Flow: убираем белый фон по умолчанию */
+.react-flow__renderer { background: transparent !important; }
+.react-flow__background { background: transparent !important; }
+
+/* Анимация fade-in для модальных окон */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in  { animation: fadeIn var(--default-animation-duration) var(--default-timing-function); }
+.animate-slide-in { animation: slideIn var(--default-animation-duration) var(--default-timing-function); }
+.animate-toast-in { animation: toastIn var(--default-animation-duration) var(--default-timing-function); }
+
+/* Кастомные узлы React Flow */
+.react-flow__node { cursor: default; }
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--primary-accent) !important;
+  background: var(--pane-background) !important;
+  transition: background var(--default-hover-animation-duration) var(--default-timing-function);
+}
+.react-flow__handle:hover {
+  background: var(--primary-accent) !important;
+}
+.react-flow__edge-path {
+  stroke: var(--color-gray-400) !important;
+  stroke-width: 2 !important;
+}
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--primary-accent) !important;
+}
+
+/* Пунктир для связей при наведении */
+.react-flow__connection-path {
+  stroke: var(--primary-accent) !important;
+  stroke-dasharray: 5 3;
+}
+
+/* Мини-карта */
+.react-flow__minimap {
+  background: var(--pane-background) !important;
+  border: 1px solid var(--pane-border) !important;
+  border-radius: var(--border-radius-lg) !important;
+}
+
+/* Controls */
+.react-flow__controls {
+  border: 1px solid var(--pane-border) !important;
+  border-radius: var(--border-radius-lg) !important;
+  overflow: hidden;
+}
+.react-flow__controls-button {
+  background: var(--pane-background) !important;
+  border-bottom: 1px solid var(--pane-border) !important;
+  color: var(--global-body-text) !important;
+  fill: var(--global-body-text) !important;
+  transition: background var(--default-hover-animation-duration) ease-out !important;
+}
+.react-flow__controls-button:hover {
+  background: var(--pane-muted-background) !important;
+}
