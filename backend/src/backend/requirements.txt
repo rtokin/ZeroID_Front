@@ -1,0 +1,27 @@
+# Zero.ID Backend — зависимости Python
+
+# FastAPI и сервер
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-multipart==0.0.9
+
+# Pydantic (используется в FastAPI)
+pydantic==2.7.1
+
+# БД — SQLAlchemy async + PostgreSQL
+sqlalchemy[asyncio]==2.0.30
+asyncpg==0.29.0        # async драйвер для FastAPI
+psycopg2-binary==2.9.9 # sync драйвер для Celery
+
+# Celery + Redis
+celery==5.4.0
+redis==5.0.4
+
+# SSH
+paramiko==3.4.0
+
+# Переменные окружения
+python-dotenv==1.0.1
+
+# Для разработки (опционально)
+# watchfiles==0.21.0
